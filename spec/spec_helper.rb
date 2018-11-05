@@ -10,6 +10,7 @@ require 'capybara/rspec'
 require 'rspec'
 require 'rake'
 require 'database_helpers'
+require 'features/web_helpers'
 Rake.application.load_rakefile
 
 # Tell Capybara to talk to MakersBnB
