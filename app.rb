@@ -1,5 +1,4 @@
 require 'sinatra/base'
-require 'data_mapper'
 
 require_relative './lib/user'
 
