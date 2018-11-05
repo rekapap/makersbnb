@@ -37,3 +37,14 @@ As a landlord
 So that I can take multiple requests
 I want the space to remain available until confirmed
 ```
+
+
+# Setup
+
+test database
+```
+rake db:test:prepare
+```
+development
+```
+rake db:migrate
