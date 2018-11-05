@@ -1,9 +1,11 @@
+
 # makersbnb
+[![Build Status](https://travis-ci.org/toddpla/makersbnb.svg?branch=master)](https://travis-ci.org/toddpla/makersbnb)
 
 This repository is for the week 6 group challenge at Makers Academy. The challenge is to make a clone of AirBnB using whatever technology we like. We have chosen to use Javascript for back and front end systems.
 
 ### User Stories
-[![Build Status](https://travis-ci.org/toddpla/makersbnb.svg?branch=master)](https://travis-ci.org/toddpla/makersbnb)
+
 ```
 As a landlord
 So that I list a space
