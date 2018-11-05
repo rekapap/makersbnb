@@ -10,9 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_05_152008) do
 
-  # These are extensions that must be enabled in order to support this database
+ActiveRecord::Schema.define(version: 2018_11_05_152008) do
   enable_extension "plpgsql"
 
   create_table "users", force: :cascade do |t|
@@ -20,6 +19,15 @@ ActiveRecord::Schema.define(version: 2018_11_05_152008) do
     t.string "first_name"
     t.string "last_name"
     t.string "password"
+  end
+
+ActiveRecord::Schema.define(version: 2018_11_05_150750) do
+  enable_extension "plpgsql"
+
+  create_table "spaces", force: :cascade do |t|
+    t.string "description"
+    t.decimal "price"
+
   end
 
 end

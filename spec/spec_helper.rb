@@ -1,5 +1,5 @@
 # Set the environment to "test"
-ENV['ENVIRONMENT'] = 'development'
+ENV['RACK_ENV'] = 'test'
 
 # Bring in the contents of the `app.rb` file
 require File.join(File.dirname(__FILE__), '..', 'app.rb')
@@ -9,6 +9,7 @@ require 'capybara'
 require 'capybara/rspec'
 require 'rspec'
 require 'rake'
+require 'database_helpers'
 Rake.application.load_rakefile
 
 # Tell Capybara to talk to MakersBnB

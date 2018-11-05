@@ -3,6 +3,7 @@ require 'sinatra/activerecord'
 require 'sinatra/activerecord/rake'
 require 'sinatra/base'
 require_relative './lib/user'
+require_relative './lib/space'
 
 class MakersBnB < Sinatra::Base
   enable :sessions
@@ -23,5 +24,20 @@ class MakersBnB < Sinatra::Base
     erb :'spaces/index'
   end
 
-  run! if app_file == $PROGRAM_NAME
+  get '/spaces/new' do
+    erb :add_space
+  end
+
+  post '/add_space' do
+    Space.create(description: params['description'], price: params['price'].to_f)
+    redirect '/spaces'
+  end
+
+  get '/spaces' do
+    @spaces = Space.all()
+    erb :space_list
+  end
+
+  # run! if app_file == $PROGRAM_NAME
+
 end
