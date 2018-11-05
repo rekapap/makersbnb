@@ -18,11 +18,11 @@ class MakersBnB < Sinatra::Base
    redirect '/spaces'
   end
 
-  get '/spaces' do
-    user_id = session[:user_id]
-    @user = User.find(user_id)
-    erb :'spaces/index'
-  end
+  # get '/spaces' do
+  #   user_id = session[:user_id]
+  #   @user = User.find(user_id)
+  #   erb :'spaces/index'
+  # end
 
   get '/spaces/new' do
     erb :add_space
@@ -34,8 +34,10 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/spaces' do
+    user_id = session[:user_id]
+    @user = User.find(user_id)
     @spaces = Space.all()
-    erb :space_list
+    erb :'spaces/index'
   end
 
   # run! if app_file == $PROGRAM_NAME
