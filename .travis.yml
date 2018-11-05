@@ -1,2 +1,5 @@
 language ruby
   - 2.5.1
+
+gemfile:
+  - Gemfile
