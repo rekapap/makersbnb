@@ -1,5 +1,5 @@
 # Set the environment to "test"
-ENV['ENVIRONMENT'] = 'test'
+ENV['ENVIRONMENT'] = 'development'
 
 # Bring in the contents of the `app.rb` file
 require File.join(File.dirname(__FILE__), '..', 'app.rb')
@@ -16,9 +16,9 @@ Capybara.app = MakersBnB
 
 RSpec.configure do |config|
 
-  # config.before(:each) do
-  #   Rake::Task['test_database_setup'].execute
-  # end
+  config.before(:each) do
+    Rake::Task['test_database_setup'].execute
+  end
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.

@@ -1,3 +1,4 @@
+require './app'
 require 'pg'
 
 task :test_database_setup do
