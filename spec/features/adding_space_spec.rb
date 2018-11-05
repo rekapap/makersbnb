@@ -1,6 +1,6 @@
 feature "adding space" do
   scenario "successfully" do
-    visit '/spaces/new'
+    visit('/spaces/new')
     fill_in("description", with: "two bed flat in Tooting")
     fill_in("price", with: "100")
     click_button("Submit")
