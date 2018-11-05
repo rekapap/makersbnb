@@ -5,7 +5,7 @@ require 'sinatra/base'
 require_relative './lib/user'
 require_relative './lib/space'
 
-Rake.application.load_rakefile
+# Rake.application.load_rakefile
 
 class MakersBnB < Sinatra::Base
   enable :sessions

@@ -7,4 +7,5 @@ task :test_database_setup do
 
   # Clear the database
   connection.exec("TRUNCATE users;")
+
 end

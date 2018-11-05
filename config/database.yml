@@ -3,13 +3,15 @@ development:
   encoding: unicode
   database: makers_bnb
   pool: 5
-  # username: your_username
-  # password: your_password
 
 production:
   adapter: postgresql
   encoding: unicode
   database: makers_bnb
   pool: 5
-  # username: your_username
-  # password: your_password
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: makers_bnb_test
+  pool: 5
