@@ -4,7 +4,8 @@ This repository is for the week 6 group challenge at Makers Academy. The challen
 
 ### User Stories
 
-```As a landlord
+```
+As a landlord
 So that I list a space
 I want to create an account
 
@@ -34,4 +35,5 @@ unavailable spaces should not be able to be booked
 
 As a landlord
 So that I can take multiple requests
-I want the space to remain available until confirmed```
+I want the space to remain available until confirmed
+```
