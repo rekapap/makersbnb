@@ -42,6 +42,10 @@ I want the space to remain available until confirmed
 
 
 # Setup
+create database
+```
+rake db:create
+```
 
 test database
 ```

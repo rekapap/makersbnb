@@ -4,6 +4,7 @@ require 'sinatra/activerecord/rake'
 require 'sinatra/base'
 require_relative './lib/user'
 require_relative './lib/space'
+require_relative './lib/booking'
 
 class MakersBnB < Sinatra::Base
   enable :sessions
@@ -38,6 +39,20 @@ class MakersBnB < Sinatra::Base
     @user = User.find(user_id)
     @spaces = Space.all()
     erb :'spaces/index'
+  end
+
+  get '/space' do
+   @space = Space.find(params["space_id"])
+   erb :'spaces/detail'
+  end
+
+  post '/request_booking' do
+    Booking.create(space_id: params['space_id'], user_id: session['user_id'],  date: params['date'])
+    redirect '/bookings/requested'
+  end
+
+  get '/bookings/requested' do
+    erb :'bookings/requested'
   end
 
   # run! if app_file == $PROGRAM_NAME
