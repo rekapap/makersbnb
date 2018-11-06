@@ -2,11 +2,14 @@ require 'rake'
 require 'sinatra/activerecord'
 require 'sinatra/activerecord/rake'
 require 'sinatra/base'
+require 'sinatra/flash'
 require_relative './lib/user'
 require_relative './lib/space'
+require_relative './database_connection_setup.rb'
 
 class MakersBnB < Sinatra::Base
-  enable :sessions
+  enable :sessions, :method_override
+  register Sinatra::Flash
 
   get '/' do
     erb :index
@@ -34,6 +37,26 @@ class MakersBnB < Sinatra::Base
     erb :'spaces/index'
   end
 
+  get '/sessions/new' do
+    erb :'sessions/new'
+  end
+
+  post '/sessions' do
+    user = User.authenticate(email: params[:email], password: params[:password])
+    if user
+      session[:user_id] = user.id
+      redirect('/spaces')
+    else
+      flash[:notice] = 'Please check your email or password.'
+      redirect('/sessions/new')
+    end
+  end
+
+  post '/sessions/destroy' do
+    session.clear
+    flash[:notice] = 'You have signed out.'
+    redirect '/spaces'
+  end
   # run! if app_file == $PROGRAM_NAME
 
 end
