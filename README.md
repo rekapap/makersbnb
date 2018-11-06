@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/toddpla/makersbnb.svg?branch=master)](https://travis-ci.org/toddpla/makersbnb)
 
-Week 6 group challenge at Makers Academy: Build a clone of AirBnB: a web application that allows users to list available spaces and make bookings.
+Week 6 group challenge at Makers Academy: Build a clone of AirBnB, a web application that allows users to list available spaces and make bookings.
 
 Team:
 [Muna Hussein](https://github.com/MHUS25),
