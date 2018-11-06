@@ -2,7 +2,6 @@ require './lib/user'
 require 'bcrypt'
 
 describe User do
-  subject { described_class }
   describe '#create_account' do
     let(:last_name) { "Doe" }
     let(:first_name) { "John" }
