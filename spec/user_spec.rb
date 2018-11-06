@@ -18,6 +18,12 @@ describe User do
       expect(BCrypt::Password).to receive(:create).with(password)
       User.create_account(email: email, first_name: first_name, last_name: last_name, password: password)
     end
+
+    it 'should return nil if email already exsist' do
+      User.create_account(email: email, first_name: first_name, last_name: last_name, password: password)
+      user = User.create_account(email: email, first_name: first_name, last_name: last_name, password: password)
+      expect(user).to be(nil)
+    end
   end
 
   describe '.authenticate' do

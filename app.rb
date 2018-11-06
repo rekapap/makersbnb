@@ -16,8 +16,12 @@ class MakersBnB < Sinatra::Base
 
   post '/users' do
    user = User.create_account(email: params['email'], first_name: params['first_name'], last_name: params['last_name'], password: params['password'])
-   session[:user_id] = user.id
-   redirect '/spaces'
+   if user 
+    session[:user_id] = user.id
+    redirect '/spaces'
+   else
+    flash[:notice] = 'Email already exsists!'
+   end
   end
   
   get '/spaces/new' do
