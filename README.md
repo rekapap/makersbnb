@@ -21,7 +21,7 @@ Team:
 
 * Work as part of a team to build a web app with only a specification to guide us
 * Use the XP values to guide behaviour
-* Follow the a developer workflow (Creating issues, branching, reviewing, squirrelling, merging.)
+* Follow a developer workflow (Creating issues, branching, reviewing, squirrelling, merging.)
 * Keep code quality and test coverage high whilst building new features
 
 ## Approach
