@@ -5,6 +5,7 @@ source "https://rubygems.org"
 git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
 gem 'activerecord'
+gem 'bcrypyt'
 gem 'capybara'
 gem 'pg'
 gem 'rake'
@@ -13,3 +14,4 @@ gem 'selenium-webdriver'
 gem 'simplecov'
 gem 'sinatra'
 gem 'sinatra-activerecord'
+gem 'sinatra-flash'

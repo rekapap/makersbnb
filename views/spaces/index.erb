@@ -5,12 +5,24 @@
 </head>
 
 <body>
+  <% if @user %>
+  <h2>Welcome, <%= @user.email %></h2>
+  <form action="/sessions/destroy" method="post">
+    <input type="submit" value="Sign out" />
+  </form>
+<% end %>
   <h1>Book a space</h1>
   <% for space in @spaces %>
   <div>
     <h3><%= space.description %></h3>
   </div>
   <% end %>
+
+  <p>
+<h3 style="color:red">
+  <%= flash[:notice] %>
+</p>
+</h3>
 </body>
 
 </html>
