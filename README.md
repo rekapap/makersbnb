@@ -70,8 +70,8 @@ I want the space to remain available until confirmed
 
 ## To set up databases
 
-test database
-`rake db:test:prepare`
+To set up the test database, run the command:
+```rake db:test:prepare```
 
-development database
-`rake db:migrate`
+To set up the development database, run the command:
+```rake db:migrate```
