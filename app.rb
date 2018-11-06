@@ -16,7 +16,7 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/users' do
-   user = User.create(email: params['email'], first_name: params['first_name'], last_name: params['last_name'], password: params['password'])
+   user = User.create_account(email: params['email'], first_name: params['first_name'], last_name: params['last_name'], password: params['password'])
    session[:user_id] = user.id
    redirect '/spaces'
   end

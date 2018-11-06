@@ -1,5 +1,13 @@
-language ruby
+language: ruby
+rvm:
   - 2.5.1
 
-gemfile:
-  - Gemfile
+services:
+  - postgresql
+
+before_script:
+  - psql -c 'create database makers_bnb_test;' -U postgres
+
+script:
+  - bundle exec rake db:test:prepare
+  - bundle exec rspec spec
