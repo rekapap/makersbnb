@@ -1,11 +1,39 @@
+# Makers BnB
 
-# makersbnb
 [![Build Status](https://travis-ci.org/toddpla/makersbnb.svg?branch=master)](https://travis-ci.org/toddpla/makersbnb)
 
-This repository is for the week 6 group challenge at Makers Academy. The challenge is to make a clone of AirBnB using whatever technology we like. We have chosen to use Javascript for back and front end systems.
+Week 6 group challenge at Makers Academy: Build a clone of AirBnB: a web application that allows users to list available spaces and make bookings.
 
-### User Stories
+Team:
+[Muna Hussein](https://github.com/MHUS25),
+[Reka Pap](https://github.com/rekapap),
+[Naomi Bid](https://github.com/NaomiBid) &
+[Todd Langford Archer](https://github.com/toddpla)
 
+## Technologies used
+
+* Backend: Ruby/Sinatra
+* Frontend: JavaScript, HTML, CSS
+* Testing: RSpec & Capybara
+* ORM: Active Record
+
+## Motivations for this project
+
+* Work as part of a team to build a web app with only a specification to guide us
+* Use the XP values to guide behaviour
+* Follow the a developer workflow (Creating issues, branching, reviewing, squirrelling, merging.)
+* Keep code quality and test coverage high whilst building new features
+
+## Approach
+
+* Focus on getting a minimum viable product first
+* Run team standups and retrospectives daily
+* Use a Kanban board to organise workflow
+* Pair Programming on implementing user stories
+* Review each other’s PRs before merging
+* Test driven development
+
+## User Stories
 ```
 As a landlord
 So that I list a space
@@ -40,13 +68,10 @@ So that I can take multiple requests
 I want the space to remain available until confirmed
 ```
 
-
-# Setup
+## To set up databases
 
 test database
-```
-rake db:test:prepare
-```
-development
-```
-rake db:migrate
+`rake db:test:prepare`
+
+development database
+`rake db:migrate`
