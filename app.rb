@@ -2,12 +2,14 @@ require 'rake'
 require 'sinatra/activerecord'
 require 'sinatra/activerecord/rake'
 require 'sinatra/base'
+require 'sinatra/flash'
 require_relative './lib/user'
 require_relative './lib/space'
 require_relative './lib/booking'
 
 class MakersBnB < Sinatra::Base
   enable :sessions
+  register Sinatra::Flash
 
   get '/' do
     erb :index
@@ -18,12 +20,6 @@ class MakersBnB < Sinatra::Base
    session[:user_id] = user.id
    redirect '/spaces'
   end
-
-  # get '/spaces' do
-  #   user_id = session[:user_id]
-  #   @user = User.find(user_id)
-  #   erb :'spaces/index'
-  # end
 
   get '/spaces/new' do
     erb :add_space
@@ -41,18 +37,19 @@ class MakersBnB < Sinatra::Base
     erb :'spaces/index'
   end
 
-  get '/space' do
-   @space = Space.find(params["space_id"])
+  get '/space/:id' do
+   @space = Space.find(params[:id])
    erb :'spaces/detail'
   end
 
   post '/request_booking' do
-    Booking.create(space_id: params['space_id'], user_id: session['user_id'],  date: params['date'])
-    redirect '/bookings/requested'
-  end
-
-  get '/bookings/requested' do
-    erb :'bookings/requested'
+    if Booking.exists?(space_id: params[:id], user_id: session[:user_id],  date: params['date'])
+      flash[:notice] = "Booking not available for this date"
+    else
+      flash[:notice] = "Booking requested"
+      @booking = Booking.create(space_id: params[:id], user_id: session[:user_id],  date: params['date'])
+    end
+    redirect "/space/#{params[:id]}"
   end
 
   get '/bookings/my_bookings'
