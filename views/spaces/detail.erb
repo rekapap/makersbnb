@@ -1,5 +1,10 @@
+<h3>Booking Form</h3>
+
+<%= flash[:notice] %>
+
 <form action="/request_booking" method="post">
-  <input type="hidden" name="space_id" value="<%= @space.id %>">
-  <input type="text" name="date" value="">
+  <input type="hidden" name="id" value="<%= @space.id %>">
+  <label for="date">Date</label>
+  <input type="text" name="date" id="date">
   <input type="submit" value="Submit">
 </form>
