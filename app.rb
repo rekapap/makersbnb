@@ -32,7 +32,7 @@ class MakersBnB < Sinatra::Base
 
   get '/spaces' do
     user_id = session[:user_id]
-    @user = User.find(user_id)
+    @user = User.find(user_id) unless user_id.nil?
     @spaces = Space.all()
     erb :'spaces/index'
   end
