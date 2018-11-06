@@ -5,6 +5,7 @@ require 'sinatra/base'
 require 'sinatra/flash'
 require_relative './lib/user'
 require_relative './lib/space'
+require_relative './database_connection_setup.rb'
 
 class MakersBnB < Sinatra::Base
   enable :sessions, :method_override
@@ -44,12 +45,11 @@ class MakersBnB < Sinatra::Base
     user = User.authenticate(email: params[:email], password: params[:password])
     if user
       session[:user_id] = user.id
-      redirect('/bookmarks')
+      redirect('/spaces')
     else
       flash[:notice] = 'Please check your email or password.'
       redirect('/sessions/new')
     end
-    redirect '/spaces'
   end
 
   post '/sessions/destroy' do
