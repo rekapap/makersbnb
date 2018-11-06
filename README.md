@@ -43,7 +43,7 @@ As a tenant
 So that I know that the place is confirmed
 I want to see that my request has been confirmed
 
-As a tennant
+As a tenant
 So that I don't book somewhere unavailable
 unavailable spaces should not be able to be booked
 
