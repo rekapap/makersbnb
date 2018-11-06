@@ -52,6 +52,10 @@ class MakersBnB < Sinatra::Base
     redirect "/space/#{params[:id]}"
   end
 
+  get '/bookings/my_bookings'
+    erb :'bookings/my_bookings'
+  end
+
   # run! if app_file == $PROGRAM_NAME
 
 end
