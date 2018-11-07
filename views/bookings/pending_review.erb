@@ -1,6 +1,13 @@
+<%= flash[:notice] %>
+
 <% for booking in @bookings %>
   <h4><%= booking.space.description %></h4>
   <h4><%= booking.user.first_name %> <%= booking.user.last_name %></h4>
   <p><%= booking.date %></p>
-  <a href="/bookings/approve/<%= booking.id %>" id="approve-<%= booking.id %>">Approve</a>
-<% end %>
+  <form action="/bookings/approve/<%= booking.id %>" method="post">
+    <input type="submit" id="approve-<%= booking.id %>" value="Approve">
+  </form>
+  <form action="/bookings/reject/<%= booking.id %>" method="post">
+    <input type="submit" id="reject-<%= booking.id %>" value="Reject">
+  </form>
+  <% end %>

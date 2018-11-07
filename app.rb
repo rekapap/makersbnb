@@ -78,14 +78,36 @@ class MakersBnB < Sinatra::Base
     end
   end
 
-  # '/users/:id/requests'
-
   get '/requests' do
     @bookings_requests = User.find(session[:user_id]).booking_requests
-    @bookings = User.find(session[:user_id]).bookings
+    @bookings = User.find(session[:user_id]).bookings.where({status: 'pending'})
     erb :'/requests/index'
   end
 
-  # run! if app_file == $PROGRAM_NAME
+  post '/bookings/approve/:id' do
+    booking = Booking.find(params[:id])
+    unless booking.status == 'pending'
+      flash[:notice] = "No booking available"
+    else
+      ActiveRecord::Base.transaction do
+        booking.status = 'approved'
+        booking.save
+        Booking.where({space_id: booking.space_id, date: booking.date, status: 'pending'}).update_all(status: 'rejected')
+      end
+      flash[:notice] = "Booking Approved"
+    end
+    redirect "/users/#{session[:user_id]}/bookings/pending_review"
+  end
 
+  post '/bookings/reject/:id' do
+    booking = Booking.find(params[:id])
+    unless booking.status == 'pending'
+      flash[:notice] = "No booking available"
+    else
+      booking.status = 'rejected'
+      booking.save
+      flash[:notice] = "Booking Rejected"
+    end
+    redirect "/users/#{session[:user_id]}/bookings/pending_review"
+  end
 end
