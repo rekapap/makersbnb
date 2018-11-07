@@ -12,6 +12,8 @@ require 'rspec'
 require 'rake'
 require 'database_helpers'
 require 'features/web_helpers'
+require 'simplecov'
+require 'simplecov-console'
 Rake.application.load_rakefile
 
 # Tell Capybara to talk to MakersBnB
@@ -21,6 +23,13 @@ Capybara.app = MakersBnB
 Pony.override_options = {
   :via => :test
 }
+
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
+  SimpleCov::Formatter::Console,
+  # Want a nice code coverage website? Uncomment this next line!
+  # SimpleCov::Formatter::HTMLFormatter
+])
+SimpleCov.start
 
 RSpec.configure do |config|
 

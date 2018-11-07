@@ -1,0 +1,6 @@
+<% for booking in @bookings %>
+  <h4><%= booking.space.description %></h4>
+  <h4><%= booking.user.first_name %> <%= booking.user.last_name %></h4>
+  <p><%= booking.date %></p>
+  <a href="/bookings/approve/<%= booking.id %>" id="approve-<%= booking.id %>">Approve</a>
+<% end %>

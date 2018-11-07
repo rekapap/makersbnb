@@ -13,7 +13,7 @@
   <% end %>
   <% for space in @spaces %>
   <div>
-    <h3><%= space.description %></h3>
+    <h3> <a href="/space/<%= space.id %>"><%= space.description %></a> £<%= space.price %></h3>
   </div>
   <% end %>
   <h2 style="color:red">
