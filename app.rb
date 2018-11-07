@@ -107,10 +107,8 @@ class MakersBnB < Sinatra::Base
     unless booking.status == 'pending'
       flash[:notice] = "No booking available"
     else
-      ActiveRecord::Base.transaction do
-        booking.status = 'rejected'
-        booking.save
-      end
+      booking.status = 'rejected'
+      booking.save
       flash[:notice] = "Booking Rejected"
     end
     redirect "/users/#{session[:user_id]}/bookings/pending_review"
