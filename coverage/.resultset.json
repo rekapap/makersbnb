@@ -99,6 +99,15 @@
         1,
         null,
         null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
         null
       ],
       "/Users/rekapap/Programming/Makers_course/6week/makersbnb/spec/features/registration_spec.rb": [
@@ -233,6 +242,6 @@
         null
       ]
     },
-    "timestamp": 1541594860
+    "timestamp": 1541596910
   }
 }

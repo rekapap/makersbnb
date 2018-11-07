@@ -101,4 +101,18 @@ class MakersBnB < Sinatra::Base
     end
     redirect "/users/#{session[:user_id]}/bookings/pending_review"
   end
+
+  post '/bookings/reject/:id' do
+    booking = Booking.find(params[:id])
+    unless booking.status == 'pending'
+      flash[:notice] = "No booking available"
+    else
+      ActiveRecord::Base.transaction do
+        booking.status = 'rejected'
+        booking.save
+      end
+      flash[:notice] = "Booking Rejected"
+    end
+    redirect "/users/#{session[:user_id]}/bookings/pending_review"
+  end
 end

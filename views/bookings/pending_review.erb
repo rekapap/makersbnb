@@ -7,4 +7,7 @@
   <form action="/bookings/approve/<%= booking.id %>" method="post">
     <input type="submit" id="approve-<%= booking.id %>" value="Approve">
   </form>
+  <form action="/bookings/reject/<%= booking.id %>" method="post">
+    <input type="submit" id="reject-<%= booking.id %>" value="Reject">
+  </form>
   <% end %>
