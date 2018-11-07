@@ -177,6 +177,14 @@
         null,
         null,
         null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
         null
       ],
       "/Users/toddlangford-archer/Documents/makers/week-6/makersbnb/spec/space_spec.rb": [
@@ -244,6 +252,6 @@
         null
       ]
     },
-    "timestamp": 1541606514
+    "timestamp": 1541608308
   }
 }
