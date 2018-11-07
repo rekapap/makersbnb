@@ -88,18 +88,16 @@
         null
       ],
       "/Users/munahussein/Projects/makersbnb/spec/features/landlord_reviews_bookings_spec.rb": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
         null,
         null,
         null,
@@ -247,6 +245,6 @@
         null
       ]
     },
-    "timestamp": 1541602244
+    "timestamp": 1541605306
   }
 }

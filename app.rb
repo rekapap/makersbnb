@@ -80,11 +80,11 @@ class MakersBnB < Sinatra::Base
 
   get '/requests' do
     @bookings_requests = User.find(session[:user_id]).booking_requests
-    @bookings = User.find(session[:user_id]).bookings.where({status: 'pending'}
+    @bookings = User.find(session[:user_id]).bookings.where({status: 'pending'})
     erb :'/requests/index'
   end
 
-  post '/bookings/approve/:id' do
+  post '/approve_request/:id' do
     booking = Booking.find(params[:id])
     unless booking.status == 'pending'
       flash[:notice] = "No booking available"
@@ -96,7 +96,7 @@ class MakersBnB < Sinatra::Base
       end
       flash[:notice] = "Booking Approved"
     end
-    redirect "/users/#{session[:user_id]}/bookings/pending_review"
+    redirect "/requests/#{params[:id]}"
   end
 
   post '/bookings/reject/:id' do
@@ -110,4 +110,17 @@ class MakersBnB < Sinatra::Base
     end
     redirect "/users/#{session[:user_id]}/bookings/pending_review"
   end
+
+  get '/requests/:id' do
+    @booking = Booking.find(params[:id])
+    erb :'/requests/received'
+  end
+
+  # post '/approve_request/:id' do
+  #   booking = Booking.find(params[:id])
+  #   booking.status = 'approved'
+  #   booking.save
+  #   flash[:notice] = "Booking Approved"
+  #   redirect "/requests/#{params[:id]}"
+  # end
 end
