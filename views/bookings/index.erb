@@ -1,0 +1,14 @@
+<h1>Requests</h1>
+
+<h3>Requests I've received</h3>
+<% for booking in @bookings_received %>
+  <a href="/bookings/<%= booking.id %>" id="received-<%= booking.id %>"><%= booking.space.description %></a>
+  <p><%= booking.date %></p>
+<% end %>
+
+<h3>Requests I've made</h3>
+<% for booking in @bookings_made %>
+  <a href="/bookings/<%= booking.id %>" id="made-<%= booking.id %>"><%= booking.space.description %></a>
+  <h4><%= booking.user.first_name %> <%= booking.user.last_name %></h4>
+  <p><%= booking.date %></p>
+<% end %>
