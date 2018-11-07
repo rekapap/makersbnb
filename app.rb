@@ -70,21 +70,18 @@ class MakersBnB < Sinatra::Base
   post '/request_booking' do
     if Booking.exists?(space_id: params['space_id'], date: params['date'], status: 'approved')
       flash[:notice] = "Booking not available for this date"
+      redirect '/space/:id'
     else
       flash[:notice] = "Booking requested"
       @booking = Booking.create(space_id: params['space_id'], user_id: session[:user_id],  date: params['date'])
+      redirect '/spaces'
     end
-    redirect "/space/#{params[:space_id]}"
   end
 
-  get '/users/:id/bookings' do
-    @bookings = User.find(session[:user_id]).booking_requests
-    erb :'/bookings/my_bookings'
-  end
-
-  get '/users/:id/bookings/pending_review' do
+  get '/requests' do
+    @bookings_requests = User.find(session[:user_id]).booking_requests
     @bookings = User.find(session[:user_id]).bookings.where({status: 'pending'})
-    erb :'/bookings/pending_review'
+    erb :'/requests/index'
   end
 
   post '/bookings/approve/:id' do
