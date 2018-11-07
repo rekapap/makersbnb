@@ -21,7 +21,7 @@ class MakersBnB < Sinatra::Base
    user = User.create_account(email: params['email'], first_name: params['first_name'], last_name: params['last_name'], password: params['password'])
    if user
     session[:user_id] = user.id
-    Mailer.send(email: user.email, subject:"MakersBnB account created", message: "Thank you for joining MakersBnB")
+    Mailer.send(email: user.email, subject:"MakersBnB notification", message: "Thank you for joining MakersBnB")
     redirect '/spaces'
    else
     flash[:notice] = 'Email already exsists!'
@@ -34,6 +34,8 @@ class MakersBnB < Sinatra::Base
 
   post '/add_space' do
     Space.create(description: params['description'], price: params['price'].to_f, user_id: session[:user_id])
+    email = User.find(session[:user_id]).email
+    Mailer.send(email: email, subject:"MakersBnB notification", message: "Your space has been added to MakersBnB")
     redirect '/spaces'
   end
 
