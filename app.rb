@@ -17,7 +17,7 @@ class MakersBnB < Sinatra::Base
 
   post '/users' do
    user = User.create_account(email: params['email'], first_name: params['first_name'], last_name: params['last_name'], password: params['password'])
-   if user 
+   if user
     session[:user_id] = user.id
     redirect '/spaces'
    else
@@ -61,7 +61,7 @@ class MakersBnB < Sinatra::Base
     flash[:notice] = 'You have signed out.'
     redirect '/spaces'
   end
-  
+
   get '/space/:id' do
    @space = Space.find(params[:id])
    erb :'spaces/detail'
@@ -83,8 +83,23 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/users/:id/bookings/pending_review' do
-    @bookings = User.find(session[:user_id]).bookings
+    @bookings = User.find(session[:user_id]).bookings.where({status: 'pending'})
     erb :'/bookings/pending_review'
+  end
+
+  post '/bookings/approve/:id' do
+    booking = Booking.find(params[:id])
+    unless booking.status == 'pending'
+      flash[:notice] = "No booking available"
+    else
+      ActiveRecord::Base.transaction do
+        booking.status = 'approved'
+        booking.save
+        Booking.where({space_id: booking.space_id, date: booking.date, status: 'pending'}).update_all(status: 'rejected')
+      end
+      flash[:notice] = "Booking Approved"
+    end
+    redirect "/users/#{session[:user_id]}/bookings/pending_review"
   end
 
   # run! if app_file == $PROGRAM_NAME

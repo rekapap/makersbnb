@@ -5,7 +5,8 @@ feature "landlord can see bookings" do
     select_space
     create_booking
     visit('/users/id/bookings/pending_review')
-    click_link('approve-1')
-    expect(page).not_to have_content("Two bed flat in Tooting\n2018-10-2")
+    click_button('approve-1')
+    expect(page).to have_content("Booking Approved")
   end
+
 end
