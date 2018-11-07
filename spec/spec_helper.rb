@@ -7,17 +7,22 @@ require File.join(File.dirname(__FILE__), '..', 'app.rb')
 # Require all the testing gems
 require 'capybara'
 require 'capybara/rspec'
+require 'pony'
 require 'rspec'
 require 'rake'
 require 'database_helpers'
 require 'features/web_helpers'
+require 'simplecov'
+require 'simplecov-console'
 Rake.application.load_rakefile
 
 # Tell Capybara to talk to MakersBnB
 Capybara.app = MakersBnB
 
-require 'simplecov'
-require 'simplecov-console'
+# Email testing
+Pony.override_options = {
+  :via => :test
+}
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
   SimpleCov::Formatter::Console,
