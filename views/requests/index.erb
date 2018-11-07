@@ -1,12 +1,12 @@
 <h1>Requests</h1>
 
-<h3>Requests I've made</h3>
+<h3>Requests I've received</h3>
 <% for booking in @bookings %>
   <h4><%= booking.space.description %></h4>
   <p><%= booking.date %></p>
 <% end %>
 
-<h3>Requests I've received</h3>
+<h3>Requests I've made</h3>
 <% for booking in @bookings_requests %>
   <h4><%= booking.space.description %></h4>
   <h4><%= booking.user.first_name %> <%= booking.user.last_name %></h4>

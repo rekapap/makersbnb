@@ -80,7 +80,7 @@ class MakersBnB < Sinatra::Base
 
   get '/requests' do
     @bookings_requests = User.find(session[:user_id]).booking_requests
-    @bookings = User.find(session[:user_id]).bookings.where({status: 'pending'})
+    @bookings = User.find(session[:user_id]).bookings.where({status: 'pending'}
     erb :'/requests/index'
   end
 
