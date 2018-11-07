@@ -82,6 +82,12 @@ I want the space to remain available until confirmed
 
 ### Bonus User Stories
 
+# Setup
+create database
+```
+rake db:create
+```
+=======
 ```text
 As a website administrator,
 So that I can provide a better service
