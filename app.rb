@@ -70,18 +70,20 @@ class MakersBnB < Sinatra::Base
   post '/request_booking' do
     if Booking.exists?(space_id: params['space_id'], date: params['date'], status: 'approved')
       flash[:notice] = "Booking not available for this date"
+      redirect '/space/:id'
     else
       flash[:notice] = "Booking requested"
       @booking = Booking.create(space_id: params['space_id'], user_id: session[:user_id],  date: params['date'])
+      redirect '/spaces'
     end
-  #  redirect '/spaces'
-    redirect "/spaces/#{params[:space_id]}"
   end
 
-  get '/users/:id/requests' do
+  # '/users/:id/requests'
+
+  get '/requests' do
     @bookings_requests = User.find(session[:user_id]).booking_requests
     @bookings = User.find(session[:user_id]).bookings
-    erb :'/requests'
+    erb :'/requests/index'
   end
 
   # run! if app_file == $PROGRAM_NAME
