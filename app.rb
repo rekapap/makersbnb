@@ -6,6 +6,8 @@ require 'sinatra/flash'
 require_relative './lib/user'
 require_relative './lib/space'
 require_relative './lib/booking'
+require_relative './lib/mailer'
+
 
 class MakersBnB < Sinatra::Base
   enable :sessions, :method_override
@@ -19,6 +21,7 @@ class MakersBnB < Sinatra::Base
    user = User.create_account(email: params['email'], first_name: params['first_name'], last_name: params['last_name'], password: params['password'])
    if user
     session[:user_id] = user.id
+    Mailer.send(email: user.email, subject:"MakersBnB account created", message: "Thank you for joining MakersBnB")
     redirect '/spaces'
    else
     flash[:notice] = 'Email already exsists!'
