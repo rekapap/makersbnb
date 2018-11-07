@@ -1,0 +1,11 @@
+<h2>Sign in</h2>
+<h2 style="color:red">
+  <%= flash[:notice] %>
+</h2>
+<br>
+<form action="/sessions" method="post">
+  <input type="email" name="email" placeholder="Email" />
+  <input type="password" name="password" placeholder="Password" />
+  <input type="submit" value="Sign in" />
+</form>
+
