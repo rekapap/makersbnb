@@ -17,7 +17,7 @@ class MakersBnB < Sinatra::Base
 
   post '/users' do
    user = User.create_account(email: params['email'], first_name: params['first_name'], last_name: params['last_name'], password: params['password'])
-   if user 
+   if user
     session[:user_id] = user.id
     redirect '/spaces'
    else
@@ -61,7 +61,7 @@ class MakersBnB < Sinatra::Base
     flash[:notice] = 'You have signed out.'
     redirect '/spaces'
   end
-  
+
   get '/space/:id' do
    @space = Space.find(params[:id])
    erb :'spaces/detail'
