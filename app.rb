@@ -99,7 +99,7 @@ class MakersBnB < Sinatra::Base
     redirect "/requests/#{params[:id]}"
   end
 
-  post '/bookings/reject/:id' do
+  post '/reject_request/:id' do
     booking = Booking.find(params[:id])
     unless booking.status == 'pending'
       flash[:notice] = "No booking available"
@@ -108,19 +108,12 @@ class MakersBnB < Sinatra::Base
       booking.save
       flash[:notice] = "Booking Rejected"
     end
-    redirect "/users/#{session[:user_id]}/bookings/pending_review"
+    redirect "/requests/#{params[:id]}"
   end
 
   get '/requests/:id' do
     @booking = Booking.find(params[:id])
-    erb :'/requests/received'
+    erb :'/requests/detail'
   end
 
-  # post '/approve_request/:id' do
-  #   booking = Booking.find(params[:id])
-  #   booking.status = 'approved'
-  #   booking.save
-  #   flash[:notice] = "Booking Approved"
-  #   redirect "/requests/#{params[:id]}"
-  # end
 end
