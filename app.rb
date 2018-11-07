@@ -101,7 +101,4 @@ class MakersBnB < Sinatra::Base
     end
     redirect "/users/#{session[:user_id]}/bookings/pending_review"
   end
-
-  # run! if app_file == $PROGRAM_NAME
-
 end
