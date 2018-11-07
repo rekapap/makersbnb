@@ -7,6 +7,7 @@ require File.join(File.dirname(__FILE__), '..', 'app.rb')
 # Require all the testing gems
 require 'capybara'
 require 'capybara/rspec'
+require 'pony'
 require 'rspec'
 require 'rake'
 require 'database_helpers'
@@ -15,6 +16,11 @@ Rake.application.load_rakefile
 
 # Tell Capybara to talk to MakersBnB
 Capybara.app = MakersBnB
+
+# Email testing
+Pony.override_options = {
+  :via => :test
+}
 
 RSpec.configure do |config|
 
