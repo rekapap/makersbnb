@@ -1,6 +1,7 @@
-    <%= erb :nav %>
+<%= erb :nav %>
 
-    <h1>Listed Spaces</h1>
+<div class="container">
+  <h1>Listed Spaces</h1>
   <% for space in @spaces %>
   <div>
     <h3> <a href="/space/<%= space.id %>"><%= space.description %></a> £<%= space.price %></h3>
@@ -9,3 +10,4 @@
   <h2 style="color:red">
     <%= flash[:notice] %>
   </h2>
+</div>
