@@ -21,4 +21,5 @@ feature 'registration' do
 
     expect(page).to have_content 'Email already exsists!'
   end
+
 end

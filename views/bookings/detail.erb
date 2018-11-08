@@ -1,0 +1,10 @@
+<h2 style="color:red">
+  <%= flash[:notice] %>
+</h2>
+
+<form action="/approve_booking/<%= @booking.id %>" method="post">
+  <input type="submit" name="approve" value="Approve">
+</form>
+<form action="/reject_booking/<%= @booking.id %>" method="post">
+  <input type="submit" name="reject" value="Reject">
+</form>
