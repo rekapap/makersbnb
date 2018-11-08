@@ -22,3 +22,10 @@ def create_booking
  fill_in("date", with: "25/10/2018")
  click_button("Submit")
 end
+
+def update_space
+  click_link("Edit")
+  fill_in("description", with: "One bed flat in Tooting")
+  fill_in("price", with: "80")
+  click_button("Submit")
+end

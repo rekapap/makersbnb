@@ -29,12 +29,26 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/spaces/new' do
+    @space = Space.new
+    erb :add_space
+  end
+
+  get '/spaces/:id/edit' do
+    @space = Space.find(params[:id])
     erb :add_space
   end
 
   post '/add_space' do
     Space.create(description: params['description'], price: params['price'].to_f, user_id: session[:user_id])
     email = User.find(session[:user_id]).email
+    Mailer.send(email: email, subject:"MakersBnB notification", message: "Your space has been added to MakersBnB")
+    redirect '/spaces'
+  end
+
+  post '/:id/edit_space' do
+    email = User.find(session[:user_id]).email
+    space = Space.find(params[:id])
+    space.update(description: params['description'], price: params['price'].to_f)
     Mailer.send(email: email, subject:"MakersBnB notification", message: "Your space has been added to MakersBnB")
     redirect '/spaces'
   end
