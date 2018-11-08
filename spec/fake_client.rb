@@ -1,35 +1,29 @@
 class FakeClient
-  def initialize(sid, token)
+
+  cattr_accessor :sms
+  self.sms = []
+
+  def initialize(_account_sid, _auth_token)
   end
 
-  def messages
-    FakeMessages.new
-  end
-
-end
-
-class FakeMessages
-  Message = Struct.new(:from, :to, :body)
-
-  cattr_accessor :messages
-  self.messages = []
-  
   def messages
     self
   end
 
   def create(from:, to:, body:)
-    self.class.messages << Message.new(from: from, to: to, body: body)
-  end
-end
-
-class FakeMessage
-  attr_reader :body
-  def initialize(body)
-    @body = body
+    self.class.sms << FakeMessage.new(from: from, to: to, body: body)
+    self
   end
 
   def sid
   end
 end
 
+class FakeMessage
+  attr_reader :from, :to, :body
+  def initialize(from:, to:, body:)
+    @from = from
+    @to = to
+    @body = body
+  end
+end

@@ -6,6 +6,8 @@ require 'sinatra/flash'
 require_relative './lib/user'
 require_relative './lib/space'
 require_relative './lib/booking'
+require_relative './lib/sms_service'
+require_relative './lib/sms_message'
 
 class MakersBnB < Sinatra::Base
   enable :sessions, :method_override
@@ -76,7 +78,7 @@ class MakersBnB < Sinatra::Base
       @booking = Booking.create(space_id: params['space_id'], user_id: session[:user_id],  date: params['date'])
       user = User.find(session[:user_id])
       sms_message = SMSMessage.booking_sent(user, @booking)
-      SMSService.new(user.phone_number, sms_message).send_sms
+      SMSService.new.send_sms(body: sms_message, to: user.phone_number)
       redirect '/spaces'
     end
   end
@@ -100,14 +102,23 @@ class MakersBnB < Sinatra::Base
       flash[:notice] = "Booking Approved"
       # confirmed
       confirmed_user = User.find(session[:user_id])
-      sms_message = SMSMessage.booking_confirmed(confirmed_user, @booking)
-      SMSService.new(user.phone_number, sms_message).send_sms
+      sms_message = SMSMessage.booking_confirmed(confirmed_user, booking)
+      SMSService.new.send_sms(body: sms_message, to: confirmed_user.phone_number)
       # denied
-      rejected_users = Booking.where({space_id: booking.space_id, date: booking.date, status: 'rejected'}).users
+      rejected_bookings = Booking.where({space_id: booking.space_id, date: booking.date, status: 'rejected'})
+      # p rejected_bookings.to_a.to_s
+      rejected_users = []
+      p User.find_by()
+      # p  Booking.where({space_id: booking.space_id, date: booking.date, status: 'rejected'}).user
+      rejected_bookings.each do |booking|
+        id = booking.user_id
+        rejected_users << User.find(id)
+      end
+
       rejected_users.each do |user|
         phone_number = user.phone_number
-        sms_message = SMSMessage.booking_rejected(user, @booking)
-        SMSService.new(phone_number, sms_message).send_sms
+        sms_message = SMSMessage.booking_rejected(user, booking)
+        SMSService.new.send_sms(body: sms_message, to: phone_number)
       end
     end
     redirect "/users/#{session[:user_id]}/bookings/pending_review"

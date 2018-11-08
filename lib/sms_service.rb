@@ -1,26 +1,17 @@
 require 'twilio-ruby'
-# require_relative 'sms_message'
 
 class SMSService
+  cattr_accessor :client
+  self.client = Twilio::REST::Client
 
-  def initialize(number, sms_message)
-    @sms_message = sms_message
-    @sid = ENV['SMS_sid']
-    @token = ENV['SMS_token']
-    @number = number
+  def initialize
+    @client = self.class.client.new(
+      ENV["SMS_sid"],
+      ENV["SMS_token"],
+    )
   end
 
-  def send_sms
-    message = create_message
-    message.sid
-  end
-
-  def create_message
-    Twilio::REST::Client.new(@sid, @token).messages
-    .create(
-        body: @sms_message,
-        from: ENV['SMS_phone'],
-        to:  @number
-      )
+  def send_sms(body:, to:)
+    @client.messages.create(from: ENV['SMS_phone'], to: to, body: body).sid
   end
 end
