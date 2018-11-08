@@ -153,17 +153,27 @@
         1,
         null,
         null,
+<<<<<<< HEAD
         1,
         1,
+=======
+>>>>>>> 81c9bc1a6446031d0cae852b181216129ed9f02f
         1,
         null,
         1,
         1,
         null,
         1,
+<<<<<<< HEAD
         0,
         null,
         null,
+=======
+        1,
+        null,
+        1,
+        1,
+>>>>>>> 81c9bc1a6446031d0cae852b181216129ed9f02f
         null,
         null,
         null,
@@ -176,6 +186,11 @@
         null,
         null,
         null,
+<<<<<<< HEAD
+=======
+        null,
+        null,
+>>>>>>> 81c9bc1a6446031d0cae852b181216129ed9f02f
         null
       ],
       "/Users/rekapap/Programming/Makers_course/6week/makersbnb/spec/features/tenant_view_bookings_spec.rb": [
@@ -234,8 +249,13 @@
         1,
         1,
         1,
+<<<<<<< HEAD
         null,
         null,
+=======
+        null,
+        null,
+>>>>>>> 81c9bc1a6446031d0cae852b181216129ed9f02f
         1,
         1,
         1,
@@ -336,6 +356,10 @@
         null
       ]
     },
+<<<<<<< HEAD
     "timestamp": 1541716819
+=======
+    "timestamp": 1541715831
+>>>>>>> 81c9bc1a6446031d0cae852b181216129ed9f02f
   }
 }
