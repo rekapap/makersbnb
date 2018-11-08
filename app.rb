@@ -16,7 +16,7 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/users' do
-   user = User.create_account(email: params['email'], first_name: params['first_name'], last_name: params['last_name'], password: params['password'])
+   user = User.create_account(email: params['email'], first_name: params['first_name'], last_name: params['last_name'], password: params['password'], phone_number: params['phone_number'])
    if user
     session[:user_id] = user.id
     redirect '/spaces'
@@ -74,7 +74,9 @@ class MakersBnB < Sinatra::Base
     else
       flash[:notice] = "Booking requested"
       @booking = Booking.create(space_id: params['space_id'], user_id: session[:user_id],  date: params['date'])
-      #call send_sms method here
+      user = User.find(session[:user_id])
+      sms_message = SMSMessage.booking_sent(user, @booking)
+      SMSService.new(user.phone_number, sms_message).send_sms
       redirect '/spaces'
     end
   end
@@ -96,6 +98,17 @@ class MakersBnB < Sinatra::Base
         Booking.where({space_id: booking.space_id, date: booking.date, status: 'pending'}).update_all(status: 'rejected')
       end
       flash[:notice] = "Booking Approved"
+      # confirmed
+      confirmed_user = User.find(session[:user_id])
+      sms_message = SMSMessage.booking_confirmed(confirmed_user, @booking)
+      SMSService.new(user.phone_number, sms_message).send_sms
+      # denied
+      rejected_users = Booking.where({space_id: booking.space_id, date: booking.date, status: 'rejected'}).users
+      rejected_users.each do |user|
+        phone_number = user.phone_number
+        sms_message = SMSMessage.booking_rejected(user, @booking)
+        SMSService.new(phone_number, sms_message).send_sms
+      end
     end
     redirect "/users/#{session[:user_id]}/bookings/pending_review"
   end

@@ -17,7 +17,7 @@ class SMSService
 
   def create_message
     Twilio::REST::Client.new(@sid, @token).messages
-      .create(
+    .create(
         body: @sms_message,
         from: ENV['SMS_phone'],
         to:  @number

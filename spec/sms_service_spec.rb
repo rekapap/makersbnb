@@ -29,8 +29,5 @@ describe SMSService do
       expect(messages).to receive(:create)
       subject.create_message
     end
-
-    
-
   end
 end

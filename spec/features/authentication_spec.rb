@@ -1,6 +1,6 @@
 feature 'authentication' do
   scenario 'a user can sign in' do
-    User.create_account(email: 'test@example.com', first_name: "John" , last_name: "Doe", password: 'password123' )
+    User.create_account(email: 'test@example.com', first_name: "John" , last_name: "Doe", password: 'password123', phone_number: "00000")
 
     visit '/sessions/new'
     fill_in(:email, with: 'test@example.com')
@@ -11,7 +11,7 @@ feature 'authentication' do
   end
 
   scenario 'a user sees an error if they get their email wrong' do
-    User.create_account(email: 'test@example.com', first_name: "John" , last_name: "Doe", password: 'password123' )
+    User.create_account(email: 'test@example.com', first_name: "John" , last_name: "Doe", password: 'password123', phone_number: "00000")
     visit '/sessions/new'
     fill_in(:email, with: 'nottherightemail@example.com')
     fill_in(:password, with: 'password123')
@@ -21,7 +21,7 @@ feature 'authentication' do
   end
 
   scenario 'a user sees an error if they get their password wrong' do
-    User.create_account(email: 'test@example.com', first_name: "John" , last_name: "Doe", password: 'password123' )
+    User.create_account(email: 'test@example.com', first_name: "John" , last_name: "Doe", password: 'password123', phone_number: "00000")
 
     visit '/sessions/new'
     fill_in(:email, with: 'test@example.com')
@@ -33,7 +33,7 @@ feature 'authentication' do
   end
 
   scenario 'a user can sign out' do
-    User.create_account(email: 'test@example.com', first_name: "Jane" , last_name: "Smith", password: 'password123' )
+    User.create_account(email: 'test@example.com', first_name: "Jane" , last_name: "Smith", password: 'password123' , phone_number: "00000")
   
     visit '/sessions/new'
     fill_in(:email, with: 'test@example.com')
