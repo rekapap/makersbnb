@@ -4,6 +4,11 @@
 
 Week 6 group challenge at Makers Academy: Build a clone of AirBnB, a web application that allows users to list available spaces and make bookings.
 
+### 1. [Learning Journey](https://github.com/toddpla/makersbnb/wiki/Team-Learning-Journey)
+### 2. [App in Production](https://limitless-wildwood-70080.herokuapp.com/)
+### 3. [Deployment Instructions](https://github.com/toddpla/makersbnb/wiki/App-Deployment)
+### 4. []
+
 Team:
 [Muna Hussein](https://github.com/MHUS25),
 [Reka Pap](https://github.com/rekapap),
@@ -142,7 +147,7 @@ So that I can communicate better
 I want to chat with the landlord/tenant of a confirmed booking.
 
 As a tenant,
-So that I can make payments more easily 
+So that I can make payments more easily
 I want pay through MakersBNB.
 
 ```
