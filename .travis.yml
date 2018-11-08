@@ -1,13 +1,18 @@
 language: ruby
 rvm:
-  - 2.5.1
-
+- 2.5.1
 services:
-  - postgresql
-
+- postgresql
 before_script:
-  - psql -c 'create database makers_bnb_test;' -U postgres
-
+- psql -c 'create database makers_bnb_test;' -U postgres
 script:
-  - bundle exec rake db:test:prepare
-  - bundle exec rspec spec
+- bundle exec rake db:test:prepare
+- bundle exec rspec spec
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: Mq2Mn+oT3IhauWKxw0q2c2xvZADTvD/Om0onPyT0hNNCWv/M7h2ngPPv+hGr41Gz+dmoDub0r8pC4r7E2tOEhPUf9LS9qb3K/eOFzxYu7QixgBVeCkSHkU0PCmjbTGWIZdMl9Lamdhe745bLV9zTSv1O42eunCzqb/TmLhszwNNh8O8n3QcyPFRd0IslV0xQsPYqKDk3xKN/+z6pjoLroQOR6L+GcT4UcyyuaJrCy2hKl+cgoqb1keyDHKk4Ovl1vRfY5PhOlHoHnmEtHi7CeBpqozSwOkdj0Esn7aEnxkv6KmGGEXUdSlXsqzkUXdVychSF3OvTD5lOklCYEdGiRYL8y6p971M/HQJdjVV7l10R642YB3f4xR0BbxNsZcHuACZ4p/7dPf+KNnisGiYdg+t6UlWWy+d79NDLRnjf1YXIhM+waal1nBu87zO2NdSsxggVcguILbGWufJSPG9H0YiJRBk3GGqvWKRiJxnguyOGUj6Vr3OSmI7MJ3nOa3f5SduSy3ecZ6EkXEIm2drhIldprEFbNaR5wQ/jvrdFPCwxBR/K0bgIQD1J+7MRA4u11wnuiby3OZQxTpzs8LyKIMJw2taPGj/12L/rWjMX7mIDlE+PcR9SYNkgIYXrLbiNKrS3+IEs0OJFlflPaA3S99wCtBaLKx/BGTPwkYO1ZTI=
+  app: makers-bnb-oct
+  on:
+    repo: toddpla/makersbnb
