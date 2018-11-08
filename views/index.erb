@@ -11,9 +11,15 @@
     <form action="/sessions/new" class="navbar-right col-xs-1">
       <input class="btn btn-primary" type="submit" value="Log in"/>
     </form>
+    <% if flash[:notice] %>
+    <div class="row">
+      <div class="alert alert-danger col-md-4 col-md-offset-4"  align="left" role="alert">
+        <%= flash[:notice] %>
+      </div>
+      </div>
+    <% end %>
     <div >
       <%= erb :'users/new' %>
     </div>
   </body>
-</div>
 </html>

@@ -25,6 +25,7 @@ class MakersBnB < Sinatra::Base
     redirect '/spaces'
    else
     flash[:notice] = 'Email already exsists!'
+    redirect '/'
    end
   end
 
