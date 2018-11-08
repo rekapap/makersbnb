@@ -1,11 +1,23 @@
-<h2>Sign in</h2>
-<h2 style="color:red">
-  <%= flash[:notice] %>
-</h2>
-<br>
-<form action="/sessions" method="post">
-  <input type="email" name="email" placeholder="Email" />
-  <input type="password" name="password" placeholder="Password" />
-  <input type="submit" value="Sign in" />
-</form>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<div class="container">
+  <h1>Sign in</h1>
+  <br>
+  <% if flash[:notice] %>
+    <div class="alert alert-danger centered" role="alert">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+  <br>
+    <form action="/sessions" method="post">
+      <div class="form-group">
+        <label>Email</label>
+        <input class="form-control" type="email" name="email" placeholder="Email"/>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input class="form-control" type="password" name="password" placeholder="Password"/>
+      </div>
+      <input class="btn btn-primary" type="submit" value="Sign in"/>
+    </form>
+  </br>
+</div>
