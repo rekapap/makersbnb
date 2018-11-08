@@ -14,6 +14,7 @@ require 'database_helpers'
 require 'features/web_helpers'
 require 'simplecov'
 require 'simplecov-console'
+#require 'sms_tests/fake_sms'
 Rake.application.load_rakefile
 
 # Tell Capybara to talk to MakersBnB
@@ -31,11 +32,19 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
 ])
 SimpleCov.start
 
+#SMSService = FakeSMS
+
 RSpec.configure do |config|
 
   config.before(:each) do
     Rake::Task['test_database_setup'].execute
+    #using the fake sms class for testing
+  #  stub_const("Twilio::REST::Client", FakeSMS)
   end
+
+  # config.before :each, type: :feature do
+  #   FakeSMS.messages = []
+  # end
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.

@@ -74,6 +74,7 @@ class MakersBnB < Sinatra::Base
     else
       flash[:notice] = "Booking requested"
       @booking = Booking.create(space_id: params['space_id'], user_id: session[:user_id],  date: params['date'])
+      #call send_sms method here
       redirect '/spaces'
     end
   end

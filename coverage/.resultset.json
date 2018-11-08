@@ -141,6 +141,18 @@
         null,
         null
       ],
+      "/Users/naomibid/gitDir/pairing_week_6/makersbnb/spec/features/sending_sms_spec.rb": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
       "/Users/naomibid/gitDir/pairing_week_6/makersbnb/spec/features/tenant_view_bookings_spec.rb": [
         1,
         1,
@@ -243,6 +255,8 @@
         null,
         null,
         null,
+        null,
+        null,
         null
       ],
       "/Users/naomibid/gitDir/pairing_week_6/makersbnb/lib/sms_service.rb": [
@@ -338,6 +352,6 @@
         null
       ]
     },
-    "timestamp": 1541672163
+    "timestamp": 1541692297
   }
 }
