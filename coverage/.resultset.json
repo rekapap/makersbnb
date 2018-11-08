@@ -1,10 +1,10 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/munahussein/Projects/makersbnb/spec/booking_spec.rb": [
+      "/Users/toddlangford-archer/Documents/week-6/makersbnb/spec/booking_spec.rb": [
 
       ],
-      "/Users/munahussein/Projects/makersbnb/spec/features/adding_space_spec.rb": [
+      "/Users/toddlangford-archer/Documents/week-6/makersbnb/spec/features/adding_space_spec.rb": [
         1,
         1,
         1,
@@ -13,7 +13,7 @@
         null,
         null
       ],
-      "/Users/munahussein/Projects/makersbnb/spec/features/authentication_spec.rb": [
+      "/Users/toddlangford-archer/Documents/week-6/makersbnb/spec/features/authentication_spec.rb": [
         1,
         1,
         1,
@@ -64,34 +64,9 @@
         null,
         null
       ],
-      "/Users/munahussein/Projects/makersbnb/spec/features/booking_request_spec.rb": [
+      "/Users/toddlangford-archer/Documents/week-6/makersbnb/spec/features/booking_request_spec.rb": [
         1,
         null,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        null,
-        null,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        null,
-        null
-      ],
-      "/Users/munahussein/Projects/makersbnb/spec/features/landlord_reviews_bookings_spec.rb": [
-        1,
-        1,
-        1,
-        1,
         1,
         1,
         1,
@@ -112,7 +87,32 @@
         null,
         null
       ],
-      "/Users/munahussein/Projects/makersbnb/spec/features/registration_spec.rb": [
+      "/Users/toddlangford-archer/Documents/week-6/makersbnb/spec/features/landlord_reviews_bookings_spec.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/toddlangford-archer/Documents/week-6/makersbnb/spec/features/registration_spec.rb": [
         1,
         1,
         1,
@@ -139,7 +139,7 @@
         null,
         null
       ],
-      "/Users/munahussein/Projects/makersbnb/spec/features/tenant_view_bookings_spec.rb": [
+      "/Users/toddlangford-archer/Documents/week-6/makersbnb/spec/features/tenant_view_bookings_spec.rb": [
         1,
         1,
         1,
@@ -151,7 +151,7 @@
         null,
         null
       ],
-      "/Users/munahussein/Projects/makersbnb/spec/features/updating_spaces_spec.rb": [
+      "/Users/toddlangford-archer/Documents/week-6/makersbnb/spec/features/updating_spaces_spec.rb": [
         1,
         1,
         1,
@@ -162,7 +162,7 @@
         null,
         null
       ],
-      "/Users/munahussein/Projects/makersbnb/spec/mailer_spec.rb": [
+      "/Users/toddlangford-archer/Documents/week-6/makersbnb/spec/mailer_spec.rb": [
         1,
         null,
         1,
@@ -175,7 +175,7 @@
         null,
         null
       ],
-      "/Users/munahussein/Projects/makersbnb/spec/space_spec.rb": [
+      "/Users/toddlangford-archer/Documents/week-6/makersbnb/spec/space_spec.rb": [
         1,
         null,
         1,
@@ -188,7 +188,7 @@
         null,
         null
       ],
-      "/Users/munahussein/Projects/makersbnb/spec/user_spec.rb": [
+      "/Users/toddlangford-archer/Documents/week-6/makersbnb/spec/user_spec.rb": [
         1,
         1,
         null,
@@ -240,3 +240,6 @@
         null
       ]
     },
+    "timestamp": 1541701271
+  }
+}
