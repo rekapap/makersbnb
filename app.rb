@@ -49,7 +49,7 @@ class MakersBnB < Sinatra::Base
     email = User.find(session[:user_id]).email
     space = Space.find(params[:id])
     space.update(description: params['description'], price: params['price'].to_f)
-    Mailer.send(email: email, subject:"MakersBnB notification", message: "Your space has been added to MakersBnB")
+    Mailer.send(email: email, subject:"MakersBnB notification", message: "Your space on MakersBnB has been updated")
     redirect '/spaces'
   end
 
