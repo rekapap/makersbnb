@@ -10,6 +10,14 @@ Team:
 [Naomi Bid](https://github.com/NaomiBid) &
 [Todd Langford Archer](https://github.com/toddpla)
 
+
+#### 1. [Learning Journey](https://github.com/toddpla/makersbnb/wiki/Team-Learning-Journey)
+#### 2. [App in Production](https://limitless-wildwood-70080.herokuapp.com/)
+#### 3. [Installation & Deployment Instructions](https://github.com/toddpla/makersbnb/wiki/Installation-&-Deployment)
+#### 4. [Running Tests](https://github.com/toddpla/makersbnb/wiki/Running-Tests)
+#### 5. [Project Contribution](https://github.com/toddpla/makersbnb/wiki/Project-Contribution)
+
+
 ## Technologies used
 
 * Backend: Ruby/Sinatra
@@ -142,7 +150,7 @@ So that I can communicate better
 I want to chat with the landlord/tenant of a confirmed booking.
 
 As a tenant,
-So that I can make payments more easily 
+So that I can make payments more easily
 I want pay through MakersBNB.
 
 ```
