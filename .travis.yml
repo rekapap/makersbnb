@@ -10,8 +10,8 @@ script:
 - bundle exec rspec spec
 deploy:
   provider: heroku
-  api_key:
-    secure: rGyPNs0rXl+YmJ4tuCm8/ApvplXZAeyvkBfRjMfF/P/yaf2eo67un993uC4vTq3X49nbAw/ph5bKPQNbyiNW/dQJiCRQY4k7ckvF8IKjKABpR8IxioaAHFgN9Qzber1Ye4nWkSzHD/8gtZZogfBWYK4WKyhmTlwALjO7nZYgVXwtPGbU8CAkD4B3tsbchZfVA4tkFbv2yBtRT/cAnwxeKTh2mk462w0OCZAD/bGq9T7aR1oiBZFB+6YjlPEKx9RZSkz1MMMAUCBD4KcEQY3G/W5xRqIBAbj3feC2Z38RYVnZU409aP/q3Y2Z8avf5kY9amZfPG/DxgAZbFjBvO/ypWQh6pJgsB+DgNkfgE67KPtLXGnaLlYzn+LwGQS9fRVEqOCNDVCDOw9XsGCH3nHJhDkEihIrReERxWPTGL4tgN22PiDgkN7qKZ2EWECtXttd3zIBlNTstPM35jzn0efr6+KnrOyYjUI34frRzlTD4LzYlR/IPspY+r6srw3mjJv85yIxxYCgteKyUBSbhWRo2XaYCOgMZbxzq4sQ4HqBaT/541DIfdG3AFnZruRRhjeGP+c/uUTql4T9wpLKEOJjIwkCA6FR/SBkFSc+pTjAA0Oxc00nYng4RANVrAHceFk4QhhIZ2JcIjpOU7RKlEdwnA4MUapRxXjy0ScWZKcF9GY=
+  api_key: 3684d5f7-bc9a-4acd-ac69-c95fb43877fa
   app: makers-bnb-oct
   on:
     repo: toddpla/makersbnb
+    on: master
