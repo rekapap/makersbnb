@@ -10,8 +10,8 @@ script:
 - bundle exec rspec spec
 deploy:
   provider: heroku
-  api_key: 3684d5f7-bc9a-4acd-ac69-c95fb43877fa
+  api_key: 15db3623-e3a9-4798-b701-31f8c3af2aae
   app: makers-bnb-oct
   on:
     repo: toddpla/makersbnb
-    on: master
+    branch: master
