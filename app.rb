@@ -79,6 +79,8 @@ class MakersBnB < Sinatra::Base
     else
       flash[:notice] = "Booking requested"
       @booking = Booking.create(space_id: params['space_id'], user_id: session[:user_id],  date: params['date'])
+      Mailer.send(email: @booking.space.user.email, subject:"MakersBnB notification", message: "You have received a booking request for Space: #{@booking.space.description}")
+      Mailer.send(email: @booking.user.email, subject:"MakersBnB notification", message: "You have requested a booking for Space: #{@booking.space.description}")
       redirect '/spaces'
     end
   end
@@ -99,6 +101,8 @@ class MakersBnB < Sinatra::Base
         booking.save
         Booking.where({space_id: booking.space_id, date: booking.date, status: 'pending'}).update_all(status: 'rejected')
       end
+      Mailer.send(email: booking.user.email, subject:"MakersBnB notification", message: "Your Booking has been confirmed")
+      Mailer.send(email: booking.space.user.email, subject:"MakersBnB notification", message: "You have confirmed the booking")
       flash[:notice] = "Booking Approved"
     end
     redirect "/bookings/#{params[:id]}"
@@ -111,6 +115,8 @@ class MakersBnB < Sinatra::Base
     else
       booking.status = 'rejected'
       booking.save
+      Mailer.send(email: booking.user.email, subject:"MakersBnB notification", message: "Your Booking has been rejected")
+      Mailer.send(email: booking.space.user.email, subject:"MakersBnB notification", message: "You have rejected the booking")
       flash[:notice] = "Booking Rejected"
     end
     redirect "/bookings/#{params[:id]}"
