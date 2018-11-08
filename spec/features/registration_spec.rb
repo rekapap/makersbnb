@@ -6,7 +6,7 @@ feature 'registration' do
     fill_in('last_name', with: 'Doe')
     fill_in('password', with: 'password123')
     click_button('Sign up')
-    expect(page).to have_content 'Book a space'
+    expect(page).to have_content 'Spaces'
   end
 
   scenario 'a user cannot sign up with the same email' do
