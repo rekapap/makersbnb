@@ -3,8 +3,8 @@ require 'twilio-ruby'
 
 class SMSService
 
-  def initialize(number, sms_message_class: SMS_message)
-    @sms_message_class = sms_message_class
+  def initialize(number, sms_message)
+    @sms_message = sms_message
     @sid = ENV['SMS_sid']
     @token = ENV['SMS_token']
     @number = number
@@ -16,10 +16,9 @@ class SMSService
   end
 
   def create_message
-    sms_message = @sms_message_class.new.text
     Twilio::REST::Client.new(@sid, @token).messages
       .create(
-        body: sms_message,
+        body: @sms_message,
         from: ENV['SMS_phone'],
         to:  @number
       )
