@@ -25,6 +25,7 @@ def create_booking
  click_button("Submit")
 end
 
+
 def sign_out
   visit '/spaces'
   click_button('Sign out')
@@ -54,3 +55,10 @@ def confirm_booking
   click_button("approve-1")
 end
 
+
+def update_space
+  click_link("Edit")
+  fill_in("description", with: "One bed flat in Tooting")
+  fill_in("price", with: "80")
+  click_button("Submit")
+end
