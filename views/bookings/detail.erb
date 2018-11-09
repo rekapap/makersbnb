@@ -2,7 +2,7 @@
 
 <div class="container">
   <h2 style="color:red"><%= flash[:notice] %></h2>
-  <h3 class="text-center">Requst for '<%= @booking.space.description %>' </h3>
+  <h3 class="text-center">Request for '<%= @booking.space.description %>' </h3>
   <p class="text-center">From: <%= @booking.user.email %></p>
   <p class="text-center">Date: <%= @booking.date %></p>
   <form action="/approve_booking/<%= @booking.id %>" method="post">
