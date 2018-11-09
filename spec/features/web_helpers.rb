@@ -56,10 +56,15 @@ def signup
    click_button("Approve")
  end
  
- 
  def update_space
    click_link("Edit")
    fill_in("description", with: "One bed flat in Tooting")
    fill_in("price", with: "80")
    click_button("Submit")
  end
+
+def open_booking_1
+  visit('/bookings')
+  click_link('received-1')
+end
+

@@ -13,4 +13,21 @@
     <input type="submit" class="btn btn-danger" name="reject" value="Reject">
   </form>
   <% end%>
+
+  <div class="form-group">
+    <h3>Chat box</h3>
+    <form action="/bookings/<%= @booking.id %>/new-message" method="post">
+      <input class="form-control" type="text" name="body">
+      <br>
+      <input class="btn btn-success float-right" type="submit" value="Send">
+      <br>
+    </form>
+  </div>
+
+  <% for message in @booking.messages.reverse %>
+    <div class="border">
+      <p> <strong><%= message.user.first_name %> <%= message.user.last_name %> @ <%= message.created_at %></strong></p>
+      <p><%= message.body %></p>
+    </div>
+  <% end %>
 </div>
