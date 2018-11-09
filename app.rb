@@ -58,8 +58,8 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/spaces' do
-    user_id = session[:user_id]
-    @user = User.find(user_id) unless user_id.nil?
+    redirect '/sessions/new' if session[:user_id].nil?
+    @user = User.find(session[:user_id])
     @spaces = Space.all()
     erb :'spaces/index'
   end
