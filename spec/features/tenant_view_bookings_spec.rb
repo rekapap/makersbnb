@@ -4,7 +4,7 @@ feature "tenant can see bookings" do
     create_space
     select_space
     create_booking
-    visit('/requests')
+    visit('/bookings')
     expect(page).to have_content("Requests I've made")
   end
 end

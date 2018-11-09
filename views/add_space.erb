@@ -1,10 +1,24 @@
+<%= erb :nav %>
+<div class="container">
+  <br>
+  <br>
 <div class="">
+  <% if @space.id %>
+  <h1>Edit space</h1>
+  <form action="/<%= @space.id %>/edit_space" method="post">
+
+    <% else %>
+
   <h1>Add new space</h1>
   <form action="/add_space" method="post">
+
+    <% end %>
+
     <label for="description">Description</label>
-    <input type="text" id="description" name="description">
+    <input value="<%= @space.description %>" type="text" id="description" name="description">
     <label for="price">Price</label>
-    <input type="text" id="price" name="price">
+    <input value="<%= @space.price %>" type="text" id="price" name="price">
     <input type="submit" value="Submit">
   </form>
+</div>
 </div>

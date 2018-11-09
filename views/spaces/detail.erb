@@ -1,10 +1,17 @@
-<h3>Booking Form</h3>
-
-<%= flash[:notice] %>
-
-<form action="/request_booking" method="post">
-  <input type="hidden" name="space_id" value="<%= @space.id %>">
-  <label for="date">Date</label>
-  <input type="date" name="date" id="date">
-  <input type="submit" value="Submit">
-</form>
+<%= erb :nav %>
+<div class="container">
+  <br>
+  <br>
+  <h3>Booking Form</h3>
+  <br>
+  <%= flash[:notice] %>
+  <% if @space_owner == @user %>
+  <a href="/spaces/<%= @space.id %>/edit">Edit</a>
+  <% end %>
+  <form action="/request_booking" method="post">
+    <input type="hidden" name="space_id" value="<%= @space.id %>">
+    <label for="date">Date</label>
+    <input type="date" name="date" id="date">
+    <input type="submit" value="Submit">
+  </form>
+</div>

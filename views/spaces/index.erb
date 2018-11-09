@@ -1,22 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Makers BnB</title>
-</head>
+<%= erb :nav %>
 
-<body>
-  <% if @user %>
-    <form action="/sessions/destroy" method="post">
-      <input type="submit" value="Sign out" />
-    </form>
-    <form action="/spaces/new">
-      <input type="submit" value="List a space" />
-    </form>
-    <form action='/requests'>
-      <input type="submit" value="Requests" />
-    </form>
-    <h1>Book a space</h1>
-  <% end %>
+<div class="container">
+  <br>
+  <h1>Listed Spaces</h1>
+  <br>
   <% for space in @spaces %>
   <div>
     <h3> <a href="/space/<%= space.id %>"><%= space.description %></a> £<%= space.price %></h3>
@@ -25,6 +12,4 @@
   <h2 style="color:red">
     <%= flash[:notice] %>
   </h2>
-</body>
-
-</html>
+</div>

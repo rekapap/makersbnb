@@ -1,16 +1,14 @@
-<!DOCTYPE html>
-<html>
-<form action='/sessions/new'>
-  <input type="submit" value="Log in" />
-</form>
-<head>
-<title>Makers BnB</title>
-</head>
-
-<body>
+<%= erb :nav %>
+<div class="container">
+  <div class="jumbotron">
+    <h1>Makers BnB</h1>
+  </div>
+  <% if flash[:notice] %>
+    <div class="alert alert-danger centered" role="alert">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
   <div >
     <%= erb :'users/new' %>
   </div>
-</body>
-
-</html>
+</div>
