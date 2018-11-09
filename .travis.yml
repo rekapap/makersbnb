@@ -1,13 +1,17 @@
 language: ruby
 rvm:
-  - 2.5.1
-
+- 2.5.1
 services:
-  - postgresql
-
+- postgresql
 before_script:
-  - psql -c 'create database makers_bnb_test;' -U postgres
-
+- psql -c 'create database makers_bnb_test;' -U postgres
 script:
-  - bundle exec rake db:test:prepare
-  - bundle exec rspec spec
+- bundle exec rake db:test:prepare
+- bundle exec rspec spec
+deploy:
+  provider: heroku
+  api_key: 15db3623-e3a9-4798-b701-31f8c3af2aae
+  run: rake db:migrate
+  app:
+    master: makersbnb-3-staging
+    production: makers-bnb-oct
