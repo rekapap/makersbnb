@@ -41,7 +41,7 @@ class MakersBnB < Sinatra::Base
 
   get '/spaces/:id/edit' do
     private_route
-    @user = User.find(session[:user_id]).id  
+    @user = User.find(session[:user_id]).id
     @space = Space.find(params[:id])
     erb :add_space
   end
@@ -179,6 +179,7 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/bookings/:id' do
+    private_route
     @user = User.find(session[:user_id]).id
     @booking = Booking.find(params[:id])
     erb :'/bookings/detail'
