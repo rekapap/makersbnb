@@ -43,7 +43,7 @@ end
 
 def sign_in_user1
   visit '/'
-  click_button("Log in")
+  click_link("Log in")
   fill_in('email', with: 'test@example.com')
   fill_in('password', with: 'password123')
   click_button('Sign in')
@@ -62,4 +62,9 @@ def update_space
   fill_in("description", with: "One bed flat in Tooting")
   fill_in("price", with: "80")
   click_button("Submit")
+end
+
+def open_booking_1
+  visit('/bookings')
+  click_link('received-1')
 end

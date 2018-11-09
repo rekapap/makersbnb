@@ -8,6 +8,8 @@ require_relative './lib/space'
 require_relative './lib/booking'
 require_relative './lib/sms_service'
 require_relative './lib/sms_message'
+require_relative './lib/message'
+require 'date'
 
 require_relative './lib/mailer'
 
@@ -181,6 +183,12 @@ class MakersBnB < Sinatra::Base
     private_route
     @booking = Booking.find(params[:id])
     erb :'/bookings/detail'
+  end
+
+  post '/bookings/:id/new-message' do
+    private_route
+    Message.create(user_id: session[:user_id], booking_id: params[:id], body: params['body'], created_at: DateTime.now)
+    redirect "/bookings/#{params[:id]}"
   end
 
 
