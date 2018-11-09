@@ -36,12 +36,14 @@ class MakersBnB < Sinatra::Base
 
   get '/spaces/new' do
     private_route
+    @user = User.find(session[:user_id]).id
     @space = Space.new
     erb :add_space
   end
 
   get '/spaces/:id/edit' do
     private_route
+    @user = User.find(session[:user_id]).id
     @space = Space.find(params[:id])
     erb :add_space
   end
@@ -56,6 +58,7 @@ class MakersBnB < Sinatra::Base
 
   post '/:id/edit_space' do
     private_route
+    @user = User.find(session[:user_id]).id
     email = User.find(session[:user_id]).email
     space = Space.find(params[:id])
     space.update(description: params['description'], price: params['price'].to_f)
@@ -120,7 +123,8 @@ class MakersBnB < Sinatra::Base
 
   get '/bookings' do
     private_route
-    @user = User.find(session[:user_id])
+    user_id = session[:user_id]
+    @user = User.find(user_id) unless user_id.nil?
     @bookings_made = User.find(session[:user_id]).booking_requests
     @bookings_received = User.find(session[:user_id]).bookings.where({status: 'pending'})
     erb :'/bookings/index'
@@ -181,6 +185,7 @@ class MakersBnB < Sinatra::Base
   get '/bookings/:id' do
     private_route
     @user = User.find(session[:user_id])
+    @user_id = User.find(session[:user_id]).id
     @booking = Booking.find(params[:id])
     space = Space.find(@booking.space_id)
     @landlord = User.find(space.user_id)
