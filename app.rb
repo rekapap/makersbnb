@@ -120,8 +120,8 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/bookings' do
-    user_id = session[:user_id]
     private_route
+    user_id = session[:user_id]
     @user = User.find(user_id) unless user_id.nil?
     @bookings_made = User.find(session[:user_id]).booking_requests
     @bookings_received = User.find(session[:user_id]).bookings.where({status: 'pending'})
