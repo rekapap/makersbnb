@@ -108,19 +108,10 @@ class MakersBnB < Sinatra::Base
       rejected_bookings = Booking.where({space_id: booking.space_id, date: booking.date, status: 'rejected'})
       # p rejected_bookings.to_a.to_s
       rejected_users = []
-<<<<<<< HEAD
-      p User.find_by()
-      # p  Booking.where({space_id: booking.space_id, date: booking.date, status: 'rejected'}).user
-=======
->>>>>>> 81c9bc1a6446031d0cae852b181216129ed9f02f
       rejected_bookings.each do |booking|
         id = booking.user_id
         rejected_users << User.find(id)
       end
-<<<<<<< HEAD
-
-=======
->>>>>>> 81c9bc1a6446031d0cae852b181216129ed9f02f
       rejected_users.each do |user|
         phone_number = user.phone_number
         sms_message = SMSMessage.booking_rejected(user, booking)
