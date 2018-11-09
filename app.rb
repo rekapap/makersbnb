@@ -33,18 +33,21 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/spaces/new' do
+    private_route
     @user = User.find(session[:user_id]).id
     @space = Space.new
     erb :add_space
   end
 
   get '/spaces/:id/edit' do
-    @user = User.find(session[:user_id]).id
+    private_route
+    @user = User.find(session[:user_id]).id  
     @space = Space.find(params[:id])
     erb :add_space
   end
 
   post '/add_space' do
+    private_route
     Space.create(description: params['description'], price: params['price'].to_f, user_id: session[:user_id])
     email = User.find(session[:user_id]).email
     Mailer.send(email: email, subject:"MakersBnB notification", message: "Your space has been added to MakersBnB")
@@ -52,6 +55,7 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/:id/edit_space' do
+    private_route
     @user = User.find(session[:user_id]).id
     email = User.find(session[:user_id]).email
     space = Space.find(params[:id])
@@ -61,8 +65,8 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/spaces' do
-    user_id = session[:user_id]
-    @user = User.find(user_id) unless user_id.nil?
+    private_route
+    @user = User.find(session[:user_id])
     @spaces = Space.all()
     erb :'spaces/index'
   end
@@ -89,6 +93,7 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/space/:id' do
+    private_route
     @user = User.find(session[:user_id]).id
     @space = Space.find(params[:id])
     @space_owner = @space.user_id
@@ -96,6 +101,7 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/request_booking' do
+    private_route
     if Booking.exists?(space_id: params['space_id'], date: params['date'], status: 'approved')
       flash[:notice] = "Booking not available for this date"
       redirect '/space/:id'
@@ -115,6 +121,7 @@ class MakersBnB < Sinatra::Base
 
   get '/bookings' do
     user_id = session[:user_id]
+    private_route
     @user = User.find(user_id) unless user_id.nil?
     @bookings_made = User.find(session[:user_id]).booking_requests
     @bookings_received = User.find(session[:user_id]).bookings.where({status: 'pending'})
@@ -122,6 +129,7 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/approve_booking/:id' do
+    private_route
     booking = Booking.find(params[:id])
     unless booking.status == 'pending'
       flash[:notice] = "No booking available"
@@ -156,6 +164,7 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/reject_booking/:id' do
+    private_route
     booking = Booking.find(params[:id])
     unless booking.status == 'pending'
       flash[:notice] = "No booking available"
@@ -173,6 +182,11 @@ class MakersBnB < Sinatra::Base
     @user = User.find(session[:user_id]).id
     @booking = Booking.find(params[:id])
     erb :'/bookings/detail'
+  end
+
+
+  def private_route
+    redirect '/sessions/new' if session[:user_id].nil?
   end
 
 end

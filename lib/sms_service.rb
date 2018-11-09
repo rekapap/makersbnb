@@ -6,8 +6,8 @@ class SMSService
 
   def initialize
     @client = self.class.client.new(
-      ENV["SMS_sid"],
-      ENV["SMS_token"],
+      ENV['SMS_sid'],
+      ENV['SMS_token'],
     )
   end
 
