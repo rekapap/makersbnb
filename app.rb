@@ -83,10 +83,10 @@ class MakersBnB < Sinatra::Base
     end
   end
 
-  get '/requests' do
+  get '/bookings' do
     @bookings_requests = User.find(session[:user_id]).booking_requests
     @bookings = User.find(session[:user_id]).bookings.where({status: 'pending'})
-    erb :'/requests/index'
+    erb :'/bookings/index'
   end
 
   post '/bookings/approve/:id' do
