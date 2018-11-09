@@ -51,8 +51,9 @@ end
 
 def confirm_booking
   visit '/spaces'
-  click_button("Requests")
-  click_button("approve-1")
+  click_link("Requests")
+  click_link('received-1')
+  click_button("Approve")
 end
 
 

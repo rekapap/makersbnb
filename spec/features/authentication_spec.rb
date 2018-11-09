@@ -33,13 +33,7 @@ feature 'authentication' do
   end
 
   scenario 'a user can sign out' do
-<<<<<<< HEAD
     User.create_account(email: 'test@example.com', first_name: "Jane" , last_name: "Smith", password: 'password123' , phone_number: "00000")
-  
-=======
-    User.create_account(email: 'test@example.com', first_name: "Jane" , last_name: "Smith", password: 'password123' )
-
->>>>>>> master
     visit '/sessions/new'
     fill_in(:email, with: 'test@example.com')
     fill_in(:password, with: 'password123')
