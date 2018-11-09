@@ -6,6 +6,9 @@ require 'sinatra/flash'
 require_relative './lib/user'
 require_relative './lib/space'
 require_relative './lib/booking'
+require_relative './lib/sms_service'
+require_relative './lib/sms_message'
+
 require_relative './lib/mailer'
 
 
@@ -18,13 +21,14 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/users' do
-   user = User.create_account(email: params['email'], first_name: params['first_name'], last_name: params['last_name'], password: params['password'])
+   user = User.create_account(email: params['email'], first_name: params['first_name'], last_name: params['last_name'], password: params['password'], phone_number: params['phone_number'])
    if user
     session[:user_id] = user.id
     Mailer.send(email: user.email, subject:"MakersBnB notification", message: "Thank you for joining MakersBnB")
     redirect '/spaces'
    else
     flash[:notice] = 'Email already exsists!'
+    redirect '/'
    end
   end
 
@@ -93,6 +97,11 @@ class MakersBnB < Sinatra::Base
     else
       flash[:notice] = "Booking requested"
       @booking = Booking.create(space_id: params['space_id'], user_id: session[:user_id],  date: params['date'])
+
+      user = User.find(session[:user_id])
+      sms_message = SMSMessage.booking_sent(user, @booking)
+      SMSService.new.send_sms(body: sms_message, to: user.phone_number)
+
       Mailer.send(email: @booking.space.user.email, subject:"MakersBnB notification", message: "You have received a booking request for Space: #{@booking.space.description}")
       Mailer.send(email: @booking.user.email, subject:"MakersBnB notification", message: "You have requested a booking for Space: #{@booking.space.description}")
       redirect '/spaces'
@@ -100,8 +109,12 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/bookings' do
+
+    user_id = session[:user_id]
+    @user = User.find(user_id) unless user_id.nil?
     @bookings_made = User.find(session[:user_id]).booking_requests
     @bookings_received = User.find(session[:user_id]).bookings.where({status: 'pending'})
+
     erb :'/bookings/index'
   end
 
@@ -118,6 +131,23 @@ class MakersBnB < Sinatra::Base
       Mailer.send(email: booking.user.email, subject:"MakersBnB notification", message: "Your Booking has been confirmed")
       Mailer.send(email: booking.space.user.email, subject:"MakersBnB notification", message: "You have confirmed the booking")
       flash[:notice] = "Booking Approved"
+      # confirmed
+      confirmed_user = User.find(session[:user_id])
+      sms_message = SMSMessage.booking_confirmed(confirmed_user, booking)
+      SMSService.new.send_sms(body: sms_message, to: confirmed_user.phone_number)
+      # denied
+      rejected_bookings = Booking.where({space_id: booking.space_id, date: booking.date, status: 'rejected'})
+      # p rejected_bookings.to_a.to_s
+      rejected_users = []
+      rejected_bookings.each do |booking|
+        id = booking.user_id
+        rejected_users << User.find(id)
+      end
+      rejected_users.each do |user|
+        phone_number = user.phone_number
+        sms_message = SMSMessage.booking_rejected(user, booking)
+        SMSService.new.send_sms(body: sms_message, to: phone_number)
+      end
     end
     redirect "/bookings/#{params[:id]}"
   end

@@ -14,6 +14,9 @@ require 'database_helpers'
 require 'features/web_helpers'
 require 'simplecov'
 require 'simplecov-console'
+require 'fake_client'
+require_relative './../lib/sms_service'
+
 Rake.application.load_rakefile
 
 # Tell Capybara to talk to MakersBnB
@@ -24,6 +27,10 @@ Pony.override_options = {
   :via => :test
 }
 
+# stubbing the SMS client
+SMSService.client = FakeClient
+
+# simplecov
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
   SimpleCov::Formatter::Console,
   # Want a nice code coverage website? Uncomment this next line!
@@ -35,6 +42,10 @@ RSpec.configure do |config|
 
   config.before(:each) do
     Rake::Task['test_database_setup'].execute
+  end
+
+  config.before :each, type: :feature do
+    FakeClient.sms = []
   end
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
