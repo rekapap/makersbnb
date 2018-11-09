@@ -1,4 +1,7 @@
-
+<%= erb :nav %>
+<div class="container">
+  <br>
+  <br>
 <div class="">
   <% if @space.id %>
   <h1>Edit space</h1>
@@ -17,4 +20,5 @@
     <input value="<%= @space.price %>" type="text" id="price" name="price">
     <input type="submit" value="Submit">
   </form>
+</div>
 </div>
