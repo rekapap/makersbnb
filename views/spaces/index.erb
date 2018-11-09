@@ -1,7 +1,9 @@
 <%= erb :nav %>
 
 <div class="container">
+  <br>
   <h1>Listed Spaces</h1>
+  <br>
   <% for space in @spaces %>
   <div>
     <h3> <a href="/space/<%= space.id %>"><%= space.description %></a> £<%= space.price %></h3>
