@@ -169,7 +169,10 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/bookings/:id' do
+    user_id = session[:user_id]
+    @user = User.find(user_id) unless user_id.nil?
     @booking = Booking.find(params[:id])
+    @landlord = User.find(@booking.user_id)
     erb :'/bookings/detail'
   end
 
