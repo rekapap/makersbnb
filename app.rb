@@ -83,8 +83,10 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/space/:id' do
-   @space = Space.find(params[:id])
-   erb :'spaces/detail'
+    @user = User.find(session[:user_id]).id
+    @space = Space.find(params[:id])
+    @space_owner = @space.user_id
+    erb :'spaces/detail'
   end
 
   post '/request_booking' do
