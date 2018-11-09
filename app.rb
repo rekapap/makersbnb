@@ -164,6 +164,9 @@ class MakersBnB < Sinatra::Base
       Mailer.send(email: booking.user.email, subject:"MakersBnB notification", message: "Your Booking has been rejected")
       Mailer.send(email: booking.space.user.email, subject:"MakersBnB notification", message: "You have rejected the booking")
       flash[:notice] = "Booking Rejected"
+      rejected_user = User.find(session[:user_id])
+      sms_message = SMSMessage.booking_rejected(rejected_user, booking)
+      SMSService.new.send_sms(body: sms_message, to: rejected_user.phone_number)
     end
     redirect "/bookings/#{params[:id]}"
   end
