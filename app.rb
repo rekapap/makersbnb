@@ -150,7 +150,6 @@ class MakersBnB < Sinatra::Base
       SMSService.new.send_sms(body: sms_message, to: confirmed_user.phone_number)
       # denied
       rejected_bookings = Booking.where({space_id: booking.space_id, date: booking.date, status: 'rejected'})
-      # p rejected_bookings.to_a.to_s
       rejected_users = []
       rejected_bookings.each do |booking|
         id = booking.user_id
@@ -185,8 +184,11 @@ class MakersBnB < Sinatra::Base
 
   get '/bookings/:id' do
     private_route
-    @user = User.find(session[:user_id]).id
+    @user = User.find(session[:user_id])
+    @user_id = User.find(session[:user_id]).id
     @booking = Booking.find(params[:id])
+    space = Space.find(@booking.space_id)
+    @landlord = User.find(space.user_id)
     erb :'/bookings/detail'
   end
 
